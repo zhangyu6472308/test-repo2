@@ -6,4 +6,5 @@ return [
     'username' => 'your_database_user',
     'password' => 'your_database_password',
     'charset' => 'utf8mb4',
+    'admin_password' => 'change_this_admin_password',
 ];

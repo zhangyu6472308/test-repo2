@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function getDatabaseConnection(): PDO
+function getAppConfig(): array
 {
     $configPath = __DIR__ . '/config.php';
 
@@ -10,7 +10,12 @@ function getDatabaseConnection(): PDO
         throw new RuntimeException('缺少 api/config.php，请先复制 api/config.example.php 并填写数据库信息。');
     }
 
-    $config = require $configPath;
+    return require $configPath;
+}
+
+function getDatabaseConnection(): PDO
+{
+    $config = getAppConfig();
     $dsn = sprintf(
         'mysql:host=%s;dbname=%s;charset=%s',
         $config['host'],

@@ -13,6 +13,35 @@ function respond(array $payload, int $statusCode = 200): void
     exit;
 }
 
+function getRequestPayload(): array
+{
+    $rawBody = file_get_contents('php://input');
+    $jsonBody = json_decode($rawBody ?: '', true);
+
+    return is_array($jsonBody) ? $jsonBody : $_POST;
+}
+
+function requireAdminPassword(array $payload): void
+{
+    $config = getAppConfig();
+    $savedPassword = (string)($config['admin_password'] ?? '');
+    $inputPassword = (string)($payload['admin_password'] ?? '');
+
+    if ($savedPassword === '' || $savedPassword === 'change_this_admin_password') {
+        respond([
+            'success' => false,
+            'message' => '请先在 api/config.php 里设置 admin_password。',
+        ], 500);
+    }
+
+    if (!hash_equals($savedPassword, $inputPassword)) {
+        respond([
+            'success' => false,
+            'message' => '管理密码不正确。',
+        ], 403);
+    }
+}
+
 try {
     $pdo = getDatabaseConnection();
     ensureMessagesTable($pdo);
@@ -32,9 +61,28 @@ try {
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $rawBody = file_get_contents('php://input');
-        $jsonBody = json_decode($rawBody ?: '', true);
-        $payload = is_array($jsonBody) ? $jsonBody : $_POST;
+        $payload = getRequestPayload();
+        $action = (string)($payload['action'] ?? 'create');
+
+        if ($action === 'delete') {
+            requireAdminPassword($payload);
+
+            $id = (int)($payload['id'] ?? 0);
+            if ($id <= 0) {
+                respond([
+                    'success' => false,
+                    'message' => '留言 ID 不正确。',
+                ], 422);
+            }
+
+            $statement = $pdo->prepare('DELETE FROM messages WHERE id = :id');
+            $statement->execute([':id' => $id]);
+
+            respond([
+                'success' => true,
+                'message' => '留言已删除。',
+            ]);
+        }
 
         $name = trim((string)($payload['name'] ?? ''));
         $content = trim((string)($payload['content'] ?? ''));
