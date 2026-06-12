@@ -7,4 +7,5 @@ return [
     'password' => 'your_database_password',
     'charset' => 'utf8mb4',
     'admin_password' => 'change_this_admin_password',
+    'site_name' => '我的个人圈子',
 ];
