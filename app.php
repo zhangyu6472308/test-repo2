@@ -91,6 +91,8 @@ function renderHeader(string $title): void
     <a class="brand" href="index.php"><?= h(siteName()) ?></a>
     <nav class="nav">
       <a href="index.php">首页</a>
+      <a href="index.php#feed">内容</a>
+      <a href="member.php">会员</a>
       <?php if ($user): ?>
         <a href="create.php">发帖</a>
         <span><?= h($user['display_name']) ?></span>
