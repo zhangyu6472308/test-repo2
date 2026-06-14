@@ -22,16 +22,15 @@ renderHeader('首页');
 ?>
 <section class="landing-hero">
   <div class="hero-copy">
-    <p class="eyebrow">触点圈层俱乐部 · AI / 副业 / 私域 / 项目实战</p>
-    <h1>把想法推进成真实结果的个人成长圈子</h1>
-    <p class="lead">这里不是信息堆积站，而是一个适合普通人记录项目、交流经验、复盘踩坑、找到同路人的内容社区。</p>
+    <p class="eyebrow">AI / 副业 / 私域 / 项目实战</p>
+    <h1>把普通人的想法，推进成看得见的项目结果</h1>
+    <p class="lead">触点圈层俱乐部是一个轻量社区：记录每天的行动，复盘真实问题，和同频的人一起把机会拆成下一步。</p>
     <div class="hero-actions">
-      <a class="button" href="register.php">加入社区</a>
-      <a class="button secondary" href="#feed">浏览内容</a>
-      <a class="button secondary" href="member.php">会员权益</a>
+      <a class="button" href="register.php">免费加入</a>
+      <a class="button ghost" href="#feed">看最新内容</a>
     </div>
   </div>
-  <div class="hero-board" aria-label="社群数据">
+  <div class="hero-metrics" aria-label="社区数据">
     <div>
       <strong><?= $userCount ?></strong>
       <span>成员</span>
@@ -47,29 +46,29 @@ renderHeader('首页');
   </div>
 </section>
 
-<section class="section-grid">
-  <article class="feature-block">
+<section class="intro-strip">
+  <div>
     <span>01</span>
-    <h2>项目实战</h2>
-    <p>把每天看到的机会拆成可执行的小任务，记录过程、结果和复盘。</p>
-  </article>
-  <article class="feature-block">
+    <h2>记录行动</h2>
+    <p>把灵感、尝试和结果写下来，不让经验只停留在聊天记录里。</p>
+  </div>
+  <div>
     <span>02</span>
-    <h2>同频交流</h2>
-    <p>成员可以发帖和评论，围绕 AI 工具、内容流量、私域运营互相反馈。</p>
-  </article>
-  <article class="feature-block">
+    <h2>互相反馈</h2>
+    <p>围绕 AI 工具、内容流量、私域运营、个人项目做具体交流。</p>
+  </div>
+  <div>
     <span>03</span>
-    <h2>个人沉淀</h2>
-    <p>每一条帖子都是你的案例库，以后可以整理成文章、课程或社群资料。</p>
-  </article>
+    <h2>沉淀资产</h2>
+    <p>长期积累的帖子可以变成案例库、课程资料或社群内容入口。</p>
+  </div>
 </section>
 
 <section class="split-section">
   <div>
     <p class="eyebrow">适合谁</p>
     <h2>适合正在从 0 到 1 跑项目的人</h2>
-    <p>你可以先从发帖记录开始：今天学了什么、做了什么、遇到什么问题、下一步怎么改。社区功能先保持简单，后面再加会员、课程、活动报名和小程序。</p>
+    <p>不需要一开始就很复杂。你可以先记录今天做了什么、卡在哪里、下一步怎么改；当内容和用户验证起来后，再逐步加入会员、课程、活动和订单能力。</p>
   </div>
   <ul class="check-list">
     <li>想做自己的小项目，但不知道怎么拆步骤</li>

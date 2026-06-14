@@ -88,18 +88,21 @@ function renderHeader(string $title): void
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="index.php"><?= h(siteName()) ?></a>
-    <nav class="nav">
+    <a class="brand" href="index.php">
+      <span class="brand-mark">触</span>
+      <span><?= h(siteName()) ?></span>
+    </a>
+    <nav class="nav" aria-label="主导航">
       <a href="index.php">首页</a>
       <a href="index.php#feed">内容</a>
       <a href="member.php">会员</a>
       <?php if ($user): ?>
         <a href="create.php">发帖</a>
-        <span><?= h($user['display_name']) ?></span>
+        <span class="nav-user"><?= h($user['display_name']) ?></span>
         <a href="logout.php">退出</a>
       <?php else: ?>
         <a href="login.php">登录</a>
-        <a href="register.php">注册</a>
+        <a class="nav-cta" href="register.php">加入</a>
       <?php endif; ?>
       <a href="admin.php">管理</a>
     </nav>
@@ -115,6 +118,10 @@ function renderFooter(): void
 {
     ?>
   </main>
+  <footer class="footer">
+    <span><?= h(siteName()) ?></span>
+    <span>把行动记录下来，把经验沉淀出来。</span>
+  </footer>
 </body>
 </html>
     <?php
